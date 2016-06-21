@@ -10,6 +10,7 @@
   "categories": [
     "Other"
   ],
+  "icon": "doc/logo.png",
   "activationEvents": [
     "workspaceContains:.vscode/tasks.json",
     "workspaceContains:.vscode/launch.json"
