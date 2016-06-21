@@ -1,8 +1,8 @@
 {
     "name": "autorun",
     "displayName": "autorun",
-    "description": "Run commands upon VS Code startup",
-    "version": "0.0.1",
+    "description": "Automatically build/launch whenever a folder is opened in VS Code",
+    "version": "1.0.0",
     "publisher": "krizzdewizz",
     "engines": {
         "vscode": "^1.0.0"
@@ -11,8 +11,31 @@
         "Other"
     ],
     "activationEvents": [
-        "workspaceContains:.vscode/tasks.json"
+        "workspaceContains:.vscode/tasks.json",
+        "workspaceContains:.vscode/launch.json"
     ],
+    "contributes": {
+        "configuration": {
+            "type": "object",
+            "title": "autorun configuration",
+            "properties": {
+                "autorun.build": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "If .vscode/tasks.json exists and this setting is true, runs the 'Run Build Task' command"
+                },
+                "autorun.launch": {
+                    "enum": [
+                        "none",
+                        "debug",
+                        "run"
+                    ],
+                    "default": "none",
+                    "description": "If .vscode/launch.json exists, runs either the 'Start Debugging' (=debug) or 'Start Without Debugging' (=run) command"
+                }
+            }
+        }
+    },
     "main": "./out/src/extension",
     "scripts": {
         "vscode:prepublish": "node ./node_modules/vscode/bin/compile",
